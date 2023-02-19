@@ -5,20 +5,20 @@ const Form = () => {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
 
   const [formErrors, setFormErrors] = useState({
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -29,39 +29,39 @@ const Form = () => {
 
   const validateForm = () => {
     let errors = {};
-    let isValid = true;
+    // let isValid = true;
 
     if (!formData.name) {
-      isValid = false;
+      // isValid = false;
       errors.name = 'Please enter your name';
     }
 
     if (!formData.email) {
-      isValid = false;
+      // isValid = false;
       errors.email = 'Please enter your email';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      isValid = false;
+      // isValid = false;
       errors.email = 'Please enter a valid email address';
     }
 
     if (!formData.password) {
-      isValid = false;
+      // isValid = false;
       errors.password = 'Please enter a password';
     } else if (formData.password.length < 6) {
-      isValid = false;
+      // isValid = false;
       errors.password = 'Password must be at least 6 characters';
     }
 
     if (!formData.confirmPassword) {
-      isValid = false;
+      // isValid = false;
       errors.confirmPassword = 'Please confirm your password';
     } else if (formData.confirmPassword !== formData.password) {
-      isValid = false;
+      // isValid = false;
       errors.confirmPassword = 'Passwords do not match';
     }
 
     setFormErrors(errors);
-    return isValid;
+    // return isValid;
   };
 
   return (
@@ -104,7 +104,9 @@ const Form = () => {
           value={formData.confirmPassword}
           onChange={handleChange}
         />
-        {formErrors.confirmPassword && <span>{formErrors.confirmPassword}</span>}
+        {formErrors.confirmPassword && (
+          <span>{formErrors.confirmPassword}</span>
+        )}
       </div>
       <button type="submit">Submit</button>
     </form>
